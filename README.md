@@ -10,15 +10,16 @@ Descrever resumidamente, em um ou dois parágrafos, o projeto que está sendo de
 
 ## Integrantes
 
-* 
-* 
-* 
-*
-*
+* Ana Laura Rocha de Souza
+* Aristides Henrique Gonçalves da Cruz
+* Arthur Souza Armond
+* Gabriel Luis Ferreira Figueiredo
+* Gustavo Anselmo Santos Silva
+* Natalia da Silva Reis
 
 ## Orientador
 
-* Nome completo do professor 1
+* Michelle Hanne Soares de Andrade
 
 ## Instruções de utilização
 
