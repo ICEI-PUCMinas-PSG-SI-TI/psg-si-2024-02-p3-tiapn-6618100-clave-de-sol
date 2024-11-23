@@ -1,25 +1,32 @@
 {
   "format": 1,
   "restore": {
-    "/home/arthur/Documentos/faculdade/TI/src/back/EscolaMusica/EscolaMusica/EscolaMusica.csproj": {}
+    "C:\\Users\\arihe\\developer\\psg-si-2024-02-p3-tiapn-6618100-clave-de-sol\\src\\back\\EscolaMusica\\EscolaMusica\\EscolaMusica.csproj": {}
   },
   "projects": {
-    "/home/arthur/Documentos/faculdade/TI/src/back/EscolaMusica/EscolaMusica/EscolaMusica.csproj": {
+    "C:\\Users\\arihe\\developer\\psg-si-2024-02-p3-tiapn-6618100-clave-de-sol\\src\\back\\EscolaMusica\\EscolaMusica\\EscolaMusica.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/home/arthur/Documentos/faculdade/TI/src/back/EscolaMusica/EscolaMusica/EscolaMusica.csproj",
+        "projectUniqueName": "C:\\Users\\arihe\\developer\\psg-si-2024-02-p3-tiapn-6618100-clave-de-sol\\src\\back\\EscolaMusica\\EscolaMusica\\EscolaMusica.csproj",
         "projectName": "EscolaMusica",
-        "projectPath": "/home/arthur/Documentos/faculdade/TI/src/back/EscolaMusica/EscolaMusica/EscolaMusica.csproj",
-        "packagesPath": "/home/arthur/.nuget/packages/",
-        "outputPath": "/home/arthur/Documentos/faculdade/TI/src/back/EscolaMusica/EscolaMusica/obj/",
+        "projectPath": "C:\\Users\\arihe\\developer\\psg-si-2024-02-p3-tiapn-6618100-clave-de-sol\\src\\back\\EscolaMusica\\EscolaMusica\\EscolaMusica.csproj",
+        "packagesPath": "C:\\Users\\arihe\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\arihe\\developer\\psg-si-2024-02-p3-tiapn-6618100-clave-de-sol\\src\\back\\EscolaMusica\\EscolaMusica\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
         "configFilePaths": [
-          "/home/arthur/.nuget/NuGet/NuGet.Config"
+          "C:\\Users\\arihe\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "net8.0"
         ],
         "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -66,7 +73,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/lib/dotnet/sdk/8.0.110/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.303/PortableRuntimeIdentifierGraph.json"
         }
       }
     }
