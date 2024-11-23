@@ -1,0 +1,37 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.btn-primary{
+    background-color: #1A1A40;
+    color: white;
+}
+.btn-secondary{
+    background-color: white;
+    color: #1A1A40;
+    border: solid;
+    border-width: 2px;
+    border-color: #1A1A40;
+}
+.bg-primary{
+    background-color: #1A1A40;
+}
+.divider-100{
+    background-color: white;
+    height: 1px;
+}
+.text-acent{
+    color: #FFC300;
+}
+.form-input{
+    width: 100%;
+    background-color: #F4F4F4;
+    padding: 10px;
+    border-radius: 5px;
+    margin-top: 15px;
+}
+.form-select{
+    width: 100%;
+    padding: 10px;
+    margin-top: 15px;
+}
