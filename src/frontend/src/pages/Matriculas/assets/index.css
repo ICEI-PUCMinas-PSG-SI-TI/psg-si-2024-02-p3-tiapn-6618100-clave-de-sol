@@ -1,0 +1,13 @@
+.method-payment{
+    background-color: #F5F5F5;
+    padding: 15px;
+    border-radius: 8px;
+    cursor: pointer;
+}
+.method-payment-selected{
+    background-color: #1A1A40;
+    color: white;
+}
+.method-payment-selected input{
+    color: #FFC300;
+}
