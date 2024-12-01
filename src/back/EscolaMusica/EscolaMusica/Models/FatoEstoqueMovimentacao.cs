@@ -5,6 +5,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 public class FatoEstoqueMovimentacao
 {
     [Key]
+    [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
     public int codigo_movimentacao { get; set; }
     public int codigo_estoque { get; set; } 
     public int codigo_tempo { get; set; } 

@@ -4,7 +4,9 @@ using System.ComponentModel.DataAnnotations.Schema;
 [Table("dim_estoque")]
 public class DimEstoque
 {
-    [Key] public int codigo_estoque { get; set; }
+    [Key]
+    [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+    public int codigo_estoque { get; set; }
     public int codigo_instrumento { get; set; }
 
 

@@ -20,25 +20,17 @@ namespace EscolaMusica.Controllers
 
         // GET: api/Matricula
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<FatoMatricula>>> GetMatriculas()
+        public async Task<ActionResult<IEnumerable<FatoMatriculaDTO>>> GetMatriculas()
         {
             return await _context.FatoMatriculas
-                .Include(m => m.aluno)
-                .Include(m => m.turma)
-                .Include(m => m.pagamento)
-                .Include(m => m.administrador)
                 .ToListAsync();
         }
 
         // GET: api/Matricula/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<FatoMatricula>> GetMatricula(int id)
+        public async Task<ActionResult<FatoMatriculaDTO>> GetMatricula(int id)
         {
             var matricula = await _context.FatoMatriculas
-                .Include(m => m.aluno)
-                .Include(m => m.turma)
-                .Include(m => m.pagamento)
-                .Include(m => m.administrador)
                 .FirstOrDefaultAsync(m => m.codigo_matricula == id);
 
             if (matricula == null)
@@ -51,7 +43,7 @@ namespace EscolaMusica.Controllers
 
         // PUT: api/Matricula/5
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutMatricula(int id, FatoMatricula matricula)
+        public async Task<IActionResult> PutMatricula(int id, FatoMatriculaDTO matricula)
         {
             if (id != matricula.codigo_matricula)
             {
@@ -81,13 +73,29 @@ namespace EscolaMusica.Controllers
 
         // POST: api/Matricula
         [HttpPost]
-        public async Task<ActionResult<FatoMatricula>> PostMatricula(FatoMatricula matricula)
+        public async Task<IActionResult> CreateFatoMatricula([FromBody] FatoMatriculaDTO dto)
         {
-            _context.FatoMatriculas.Add(matricula);
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+
+            // Criação do objeto FatoMatricula com base no DTO
+            var fatoMatricula = new FatoMatriculaDTO
+            {
+                codigo_aluno = dto.codigo_aluno,
+                codigo_turma = dto.codigo_turma,
+                codigo_administrador = dto.codigo_administrador,
+                data_inicio = dto.data_inicio,
+                status = dto.status
+            };
+
+            _context.FatoMatriculas.Add(fatoMatricula);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction(nameof(GetMatricula), new { id = matricula.codigo_matricula }, matricula);
+            // Retornar a resposta com o código da matrícula criado
+            return CreatedAtAction(nameof(GetMatricula), new { id = fatoMatricula.codigo_matricula }, fatoMatricula);
         }
+
+
 
         // DELETE: api/Matricula/5
         [HttpDelete("{id}")]

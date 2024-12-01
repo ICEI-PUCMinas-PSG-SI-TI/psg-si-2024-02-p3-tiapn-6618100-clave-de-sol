@@ -7,7 +7,8 @@ namespace EscolaMusica.Data
         public EscolaDbContext(DbContextOptions<EscolaDbContext> options) : base(options)
         {
         }
-
+        
+        // Tabelas Dimensão
         public DbSet<DimInstrumento> DimInstrumentos { get; set; }
         public DbSet<DimAluno> DimAlunos { get; set; }
         public DbSet<DimTempo> DimTempos { get; set; }
@@ -15,17 +16,17 @@ namespace EscolaMusica.Data
         public DbSet<DimProfessor> DimProfessores { get; set; }
         public DbSet<DimTurma> DimTurmas { get; set; }
         public DbSet<DimEstoque> DimEstoques { get; set; }
-        public DbSet<DimPagamento> DimPagamentos { get; set; } // Adicionado
+        public DbSet<DimPagamento> DimPagamentos { get; set; } // Pagamento
 
+        // Tabelas Fato
         public DbSet<FatoEmprestimo> FatoEmprestimos { get; set; }
         public DbSet<FatoAgendamentoAula> FatoAgendamentosAula { get; set; }
-        public DbSet<FatoMatricula> FatoMatriculas { get; set; }
+        public DbSet<FatoMatriculaDTO> FatoMatriculas { get; set; }
         public DbSet<FatoEstoqueMovimentacao> FatoEstoquesMovimentacao { get; set; }
 
-        
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            // FatoEmprestimo
+            // Configuração da tabela FatoEmprestimo
             modelBuilder.Entity<FatoEmprestimo>()
                 .HasOne(f => f.instrumento)
                 .WithMany()
@@ -52,8 +53,7 @@ namespace EscolaMusica.Data
                 .WithMany()
                 .HasForeignKey(f => f.codigo_administrador);
 
-
-            // FatoAgendamentoAula
+            // Configuração da tabela FatoAgendamentoAula
             modelBuilder.Entity<FatoAgendamentoAula>()
                 .HasOne(f => f.turma)
                 .WithMany()
@@ -74,39 +74,44 @@ namespace EscolaMusica.Data
                 .WithMany()
                 .HasForeignKey(f => f.codigo_administrador);
 
-            
             // Relacionamento DimEstoque -> DimInstrumento
             modelBuilder.Entity<DimEstoque>()
                 .HasOne(e => e.instrumento)
                 .WithMany()
                 .HasForeignKey(e => e.codigo_instrumento);
 
-            // FatoMatricula Relationships
-            modelBuilder.Entity<FatoMatricula>()
-                .HasOne(f => f.aluno)
-                .WithMany()
-                .HasForeignKey(f => f.codigo_aluno)
-                .OnDelete(DeleteBehavior.Restrict);
+            modelBuilder.Entity<FatoMatriculaDTO>(entity =>
+            {
+                // Relacionamento com DimAluno
+                entity.HasOne<DimAluno>() // Sem propriedade de navegação
+                    .WithMany()
+                    .HasForeignKey(f => f.codigo_aluno)
+                    .OnDelete(DeleteBehavior.Restrict);
 
-            modelBuilder.Entity<FatoMatricula>()
-                .HasOne(f => f.turma)
-                .WithMany()
-                .HasForeignKey(f => f.codigo_turma)
-                .OnDelete(DeleteBehavior.Restrict);
+                // Relacionamento com DimTurma
+                entity.HasOne<DimTurma>() // Sem propriedade de navegação
+                    .WithMany()
+                    .HasForeignKey(f => f.codigo_turma)
+                    .OnDelete(DeleteBehavior.Restrict);
 
-            modelBuilder.Entity<FatoMatricula>()
-                .HasOne(f => f.pagamento)
-                .WithMany()
-                .HasForeignKey(f => f.codigo_pagamento)
-                .OnDelete(DeleteBehavior.Restrict);
+                // Relacionamento com DimAdministrador
+                entity.HasOne<DimAdministrador>() // Sem propriedade de navegação
+                    .WithMany()
+                    .HasForeignKey(f => f.codigo_administrador)
+                    .OnDelete(DeleteBehavior.Restrict);
 
-            modelBuilder.Entity<FatoMatricula>()
-                .HasOne(f => f.administrador)
-                .WithMany()
-                .HasForeignKey(f => f.codigo_administrador)
-                .OnDelete(DeleteBehavior.Restrict);
+                // Configuração de outras propriedades
+                entity.Property(f => f.data_inicio)
+                    .HasColumnType("date")
+                    .IsRequired();
 
-            // FatoEstoqueMovimentacao
+                entity.Property(f => f.status)
+                    .HasMaxLength(50)
+                    .IsRequired();
+            });
+
+
+            // Configuração da tabela FatoEstoqueMovimentacao
             modelBuilder.Entity<FatoEstoqueMovimentacao>()
                 .HasOne(f => f.estoque)
                 .WithMany()
@@ -122,6 +127,7 @@ namespace EscolaMusica.Data
                 .WithMany()
                 .HasForeignKey(f => f.codigo_administrador);
 
+            // Adicionar restrições adicionais se necessário
         }
     }
 }

@@ -4,7 +4,9 @@ using System.ComponentModel.DataAnnotations.Schema;
 [Table("dim_horario")]
 public class DimHorario
 {
-    [Key] public int codigo_horario { get; set; }
+    [Key] 
+    [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+    public int codigo_horario { get; set; }
 
     [Required] [StringLength(20)] public string dia_semana { get; set; }
 

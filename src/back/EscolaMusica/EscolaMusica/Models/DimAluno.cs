@@ -5,6 +5,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 public class DimAluno
 {
     [Key]
+    [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
     public int codigo_aluno { get; set; }
     public string nome { get; set; }
     public string matricula { get; set; }

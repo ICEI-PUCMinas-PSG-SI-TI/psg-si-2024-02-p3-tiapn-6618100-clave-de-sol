@@ -5,7 +5,9 @@ using System.ComponentModel.DataAnnotations.Schema;
 [Table("fato_emprestimo")]
 public class FatoEmprestimo
 {
-    [Key] public int codigo_emprestimo { get; set; }
+    [Key] 
+    [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+    public int codigo_emprestimo { get; set; }
     public int codigo_instrumento { get; set; }
     public int codigo_aluno { get; set; }
     public int codigo_tempo_emprestimo { get; set; }

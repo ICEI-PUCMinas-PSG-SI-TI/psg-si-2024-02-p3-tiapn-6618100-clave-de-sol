@@ -4,7 +4,9 @@ using System.ComponentModel.DataAnnotations.Schema;
 [Table("dim_pagamento")]
 public class DimPagamento
 {
-    [Key] public int codigo_pagamento { get; set; }
+    [Key] 
+    [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+    public int codigo_pagamento { get; set; }
 
     [Required] public string tipo { get; set; }
 

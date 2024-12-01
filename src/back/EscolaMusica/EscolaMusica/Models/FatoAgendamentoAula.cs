@@ -4,7 +4,9 @@ using System.ComponentModel.DataAnnotations.Schema;
 [Table("fato_agendamentoaula")]
 public class FatoAgendamentoAula
 {
-    [Key] public int codigo_agendamento { get; set; }
+    [Key] 
+    [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+    public int codigo_agendamento { get; set; }
 
     public int codigo_turma { get; set; }
     public int codigo_professor { get; set; }
