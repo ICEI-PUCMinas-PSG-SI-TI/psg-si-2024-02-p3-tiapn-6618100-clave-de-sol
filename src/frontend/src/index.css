@@ -23,6 +23,10 @@
 .text-acent{
     color: #FFC300;
 }
+.bg-accent{
+    background-color: #FFC300;
+    color: #1A1A40;
+}
 .form-input{
     width: 100%;
     background-color: #F4F4F4;

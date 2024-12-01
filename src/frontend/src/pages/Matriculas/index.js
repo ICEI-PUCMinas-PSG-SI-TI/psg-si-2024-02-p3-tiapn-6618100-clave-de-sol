@@ -1,36 +1,51 @@
 import "./assets/index.css"
-import {useEffect, useState} from "react";
+import React, {useEffect, useState} from "react";
+import {openApi} from "../../services/api";
+import toast from "react-hot-toast";
 
 const Matriculas = (  ) => {
 
     const [methodPayment, setMethodPayment] = useState(null);
     const [listCursos, setListCursos] = useState(null);
     const [listInstrumentos, setListInstrumentos] = useState(null);
+    const [admCode, setAdmCode] = useState(null);
 
     const handleChangeMethodPayment = ( method ) => {
         setMethodPayment( method )
     }
 
-    const urlBackend = "http://localhost:8080/api";
-
     const fetchData = async () => {
         try {
-            const resCursos = await fetch(`${urlBackend}/Turma`);
-            const resInstrumentos = await fetch(`${urlBackend}/Instrumento`);
 
-            const cursosData = await resCursos.json();
+            const {data: cursosData} = await openApi(`/Turma`);
+            const {data: instrumentosData} = await openApi.get("/Instrumento");
+            const {data: admData} = await openApi.get("/Administrador");
 
-            console.log(cursosData); // Log dos dados
             setListCursos(cursosData); // Atualiza o state
-
-            const instrumentosData = await resInstrumentos.json();
             setListInstrumentos(instrumentosData);
+            setAdmCode(admData[0].codigo_administrador);
         } catch (e) {
             console.error("Erro ao buscar dados:", e); // É bom logar o erro
-        } finally {
-            // Implementar loading
         }
     };
+
+    async function handleEnroll( event ){
+        event.preventDefault();
+        const formData = new FormData(event.target);
+        const data = Object.fromEntries(formData);
+
+        const matriculaModel = {
+
+        }
+
+        try{
+            await openApi.post("/Matricula", matriculaModel);
+            toast.success("Cadastro criado com sucesso!");
+        }catch (err){
+            console.log(err.response.data.title)
+            toast.error(err.response.data.title);
+        }
+    }
 
     useEffect(() => {
         fetchData();
@@ -42,14 +57,14 @@ const Matriculas = (  ) => {
                 <h1 className="text-4xl font-extrabold text-acent text-center" >
                     Matricule-se
                 </h1>
-                <form className="mt-10">
+                <form className="mt-10" onSubmit={handleEnroll}>
                     <div className="grid grid-cols-2 gap-4 mb-10">
                         <div>
                             <p className="px-3">
                                 <label>
                                     Nome completo
                                 </label>
-                                <input className="w-[100%] form-input" type="text" placeholder="Nome completo"/>
+                                <input className="w-[100%] form-input" name={'nome'} type="text" placeholder="Nome completo"/>
                             </p>
                         </div>
                         <div>
@@ -57,7 +72,7 @@ const Matriculas = (  ) => {
                                 <label>
                                     Data de nascimento
                                 </label>
-                                <input className="w-[100%] form-input" type="date" placeholder=""/>
+                                <input className="w-[100%] form-input" name={'data_nascimento'} type="date" placeholder=""/>
                             </p>
                         </div>
                     </div>
@@ -67,7 +82,7 @@ const Matriculas = (  ) => {
                                 <label>
                                     Telefone
                                 </label>
-                                <input className="w-[100%] form-input" type="text" placeholder="(99) 99999-9999"/>
+                                <input className="w-[100%] form-input" type="text" name={'telefone'} placeholder="(99) 99999-9999"/>
                             </p>
                         </div>
                         <div>
@@ -75,7 +90,7 @@ const Matriculas = (  ) => {
                                 <label>
                                     Email
                                 </label>
-                                <input className="w-[100%] form-input" type="email" placeholder="exemplo@gmail.com"/>
+                                <input className="w-[100%] form-input" type="email" name={'email'} placeholder="exemplo@gmail.com"/>
                             </p>
                         </div>
                     </div>
@@ -89,7 +104,7 @@ const Matriculas = (  ) => {
                                     <label>
                                         Rua
                                     </label>
-                                    <input className="w-[100%] form-input" type="text" placeholder=""/>
+                                    <input className="w-[100%] form-input" type="text" name={'rua'} placeholder=""/>
                                 </p>
                             </div>
                             <div>
@@ -97,7 +112,7 @@ const Matriculas = (  ) => {
                                     <label>
                                         Bairro
                                     </label>
-                                    <input className="w-[100%] form-input" type="text" placeholder=""/>
+                                    <input className="w-[100%] form-input" type="text" name={'bairro'} placeholder=""/>
                                 </p>
                             </div>
                         </div>
@@ -107,7 +122,7 @@ const Matriculas = (  ) => {
                                     <label>
                                         Número/Bloco
                                     </label>
-                                    <input className="w-[100%] form-input" type="text" placeholder=""/>
+                                    <input className="w-[100%] form-input" type="text" name={'numero'} placeholder=""/>
                                 </p>
                             </div>
                             <div>
@@ -115,7 +130,7 @@ const Matriculas = (  ) => {
                                     <label>
                                         Cep
                                     </label>
-                                    <input className="w-[100%] form-input" type="text" placeholder=""/>
+                                    <input className="w-[100%] form-input" type="text" name={'cep'} placeholder=""/>
                                 </p>
                             </div>
                         </div>
@@ -130,9 +145,9 @@ const Matriculas = (  ) => {
                                     <label>
                                         Cursos
                                     </label>
-                                    <select className="form-select" name={`cursos`}>
-                                        { listCursos && listCursos.map(( curso ) => (
-                                            <option value={curso.codigo_turma}>{ curso.nome }</option>
+                                    <select className="form-select" name={`cusrso`}>
+                                        { listCursos && listCursos.map(( curso, key ) => (
+                                            <option key={key} value={curso.codigo_turma}>{ curso.nome }</option>
                                         ))}
                                     </select>
                                 </p>
@@ -142,9 +157,9 @@ const Matriculas = (  ) => {
                                     <label>
                                         Instrumentos
                                     </label>
-                                    <select className="form-select" name={`instrumentos`}>
-                                        { listInstrumentos && listInstrumentos.map(( instrumento ) => (
-                                            <option value={instrumento.codigo_instrumento}>{ instrumento.nome }</option>
+                                    <select className="form-select" name={`instrumento`}>
+                                        { listInstrumentos && listInstrumentos.map(( instrumento, key ) => (
+                                            <option key={key} value={instrumento.codigo_instrumento}>{ instrumento.nome }</option>
                                         ))}
                                     </select>
                                 </p>
@@ -154,7 +169,7 @@ const Matriculas = (  ) => {
                                     <label>
                                         Disponibilidade de horário
                                     </label>
-                                    <select className="form-select">
+                                    <select className="form-select" name={'disponibilidade'}>
                                         <option value="" disabled selected>Selecione uma opção</option>
                                         <option value="segunda">Segunda</option>
                                         <option value="terca">Terça</option>
@@ -178,7 +193,7 @@ const Matriculas = (  ) => {
                                     <label>
                                         Planos
                                     </label>
-                                    <select className="form-select">
+                                    <select className="form-select" name={'plano'}>
                                         <option value="mensagel">Mensal</option>
                                         <option value="trimestral">Trimestral</option>
                                         <option value="anual">Anual</option>
@@ -192,7 +207,7 @@ const Matriculas = (  ) => {
                                     className={`px-3 method-payment ${methodPayment === "cartao_credito" ? "method-payment-selected" : ""}`}>
                                     <input
                                         type="radio"
-                                        name="method_payment"
+                                        name="metodo_pagamento"
                                         value={`cartao_credito`}
                                         onChange={() => handleChangeMethodPayment('cartao_credito')}
                                     />
@@ -204,7 +219,7 @@ const Matriculas = (  ) => {
                                     className={`px-3 method-payment ${methodPayment === "boleto" ? "method-payment-selected" : ""}`}>
                                     <input
                                         type="radio"
-                                        name="method_payment"
+                                        name="metodo_pagamento"
                                         value={`boleto`}
                                         onChange={() => handleChangeMethodPayment('boleto')}
                                     />
@@ -216,7 +231,7 @@ const Matriculas = (  ) => {
                                     className={`px-3 method-payment ${methodPayment === "pix" ? "method-payment-selected" : ""}`}>
                                     <input
                                         type="radio"
-                                        name="method_payment"
+                                        name="metodo_pagamento"
                                         value={`pix`}
                                         onChange={() => handleChangeMethodPayment('pix')}
                                     />
@@ -230,25 +245,25 @@ const Matriculas = (  ) => {
                                     <label>
                                         Nome
                                     </label>
-                                    <input className="w-[100%] form-input" type="text" placeholder=""/>
+                                    <input className="w-[100%] form-input" name={'nome_cartao'} type="text" placeholder=""/>
                                 </p>
                                 <p className="px-3">
                                     <label>
                                         Data de Expiração
                                     </label>
-                                    <input className="w-[100%] form-input" type="text" placeholder="00/00"/>
+                                    <input className="w-[100%] form-input" type="text" name={'data_expiracao'} placeholder="00/00"/>
                                 </p>
                                 <p className="px-3">
                                     <label>
                                         Número
                                     </label>
-                                    <input className="w-[100%] form-input" type="text" placeholder="5555 5555 5555 5555"/>
+                                    <input className="w-[100%] form-input" type="text" name={'numero_cartao'} placeholder="5555 5555 5555 5555"/>
                                 </p>
                                 <p className="px-3">
                                     <label>
                                         Código de Segurança
                                     </label>
-                                    <input className="w-[100%] form-input" type="text" placeholder="XXX"/>
+                                    <input className="w-[100%] form-input" type="text" name={'cod_seguranca'} placeholder="XXX"/>
                                 </p>
                             </div>
                             <p className={`flex items-center justify-center`}>
@@ -263,13 +278,29 @@ const Matriculas = (  ) => {
                                         fill="white"/>
                                     <path
                                         d="M3 4.5C3 3.63808 3.35038 2.73993 3.93117 2.06161C4.51044 1.38507 5.25079 1 6 1C7.64518 1 9 2.35378 9 4.05V4.5V5H3V4.5Z"
-                                        stroke="#4BB769" stroke-width="2"/>
+                                        stroke="#4BB769"/>
                                 </svg>
                                 <span className={`ps-2`}>
                                     Informações seguras e criptografadas
                                 </span>
                             </p>
                         </div>
+                    </div>
+                    <div className="mt-20 mb-20 flex justify-end items-center gap-5">
+                        <a href="/">
+                            <button type={"button"} className="p-3 px-4  rounded-md btn-secondary flex">
+                                Cancelar
+                            </button>
+                        </a>
+                        <a href="/matricular">
+                            <button className="p-3 px-4 rounded-md btn-primary flex items-center justify-center gap-2">
+                                Realizar matrícula
+                                <svg fill="white" xmlns="http://www.w3.org/2000/svg" width="12" height="12"
+                                     viewBox="0 0 24 24">
+                                    <path d="M7.33 24l-2.83-2.829 9.339-9.175-9.339-9.167 2.83-2.829 12.17 11.996z"/>
+                                </svg>
+                            </button>
+                        </a>
                     </div>
                 </form>
             </div>
