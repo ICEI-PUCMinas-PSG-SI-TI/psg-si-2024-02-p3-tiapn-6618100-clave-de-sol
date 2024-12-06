@@ -1,121 +1,66 @@
+﻿using EscolaMusica.Models;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using EscolaMusica.Data;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
-namespace EscolaMusica.Controllers
+namespace EscolaMusica.Controllers;
+
+[ApiController]
+[Route("api/matricula")]
+public class MatriculaController : ControllerBase
 {
-    [Route("api/[controller]")]
-    [ApiController]
-    public class MatriculaController : ControllerBase
+    private readonly EscolaDbContext _context;
+
+    public MatriculaController(EscolaDbContext context)
     {
-        private readonly EscolaDbContext _context;
+        _context = context;
+    }
 
-        public MatriculaController(EscolaDbContext context)
+    [HttpPost("cadastrar")]
+    public async Task<IActionResult> CadastrarMatricula(MatriculaDTO matriculaDto)
+    {
+        using var transaction = await _context.Database.BeginTransactionAsync();
+
+        try
         {
-            _context = context;
-        }
 
-        // GET: api/Matricula
-        [HttpGet]
-        public async Task<ActionResult<IEnumerable<FatoMatriculaDTO>>> GetMatriculas()
-        {
-            return await _context.FatoMatriculas
-                .ToListAsync();
-        }
+            _context.Alunos.Add(matriculaDto.Aluno);
+            await _context.SaveChangesAsync();
 
-        // GET: api/Matricula/5
-        [HttpGet("{id}")]
-        public async Task<ActionResult<FatoMatriculaDTO>> GetMatricula(int id)
-        {
-            var matricula = await _context.FatoMatriculas
-                .FirstOrDefaultAsync(m => m.codigo_matricula == id);
+            _context.Pagamentos.Add(matriculaDto.Pagamento);
+            await _context.SaveChangesAsync();
 
-            if (matricula == null)
+            var turma = await _context.Turmas.FindAsync(matriculaDto.CodigoTurma);
+            if (turma == null) return BadRequest(new { Message = "Turma não encontrada." });
+
+            var curso = await _context.Cursos.FindAsync(turma.codigo_turma);
+            if (curso == null) return BadRequest(new { Message = "Curso não encontrado." });
+
+            var fatoMatricula = new FatoMatricula
             {
-                return NotFound();
-            }
-
-            return matricula;
-        }
-
-        // PUT: api/Matricula/5
-        [HttpPut("{id}")]
-        public async Task<IActionResult> PutMatricula(int id, FatoMatriculaDTO matricula)
-        {
-            if (id != matricula.codigo_matricula)
-            {
-                return BadRequest();
-            }
-
-            _context.Entry(matricula).State = EntityState.Modified;
-
-            try
-            {
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!MatriculaExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
-
-            return NoContent();
-        }
-
-        // POST: api/Matricula
-        [HttpPost]
-        public async Task<IActionResult> CreateFatoMatricula([FromBody] FatoMatriculaDTO dto)
-        {
-            if (!ModelState.IsValid)
-                return BadRequest(ModelState);
-
-            // Criação do objeto FatoMatricula com base no DTO
-            var fatoMatricula = new FatoMatriculaDTO
-            {
-                codigo_aluno = dto.codigo_aluno,
-                codigo_turma = dto.codigo_turma,
-                codigo_administrador = dto.codigo_administrador,
-                data_inicio = dto.data_inicio,
-                status = dto.status
+                codigo_aluno = matriculaDto.Aluno.codigo_aluno,
+                codigo_turma = turma.codigo_turma,
+                codigo_pagamento = matriculaDto.Pagamento.codigo_pagamento,
+                codigo_administrador = matriculaDto.CodigoAdministrador,
+                data_inicio = matriculaDto.DataInicio,
+                status = matriculaDto.Status
             };
 
-            _context.FatoMatriculas.Add(fatoMatricula);
+            _context.Matriculas.Add(fatoMatricula);
             await _context.SaveChangesAsync();
 
-            // Retornar a resposta com o código da matrícula criado
-            return CreatedAtAction(nameof(GetMatricula), new { id = fatoMatricula.codigo_matricula }, fatoMatricula);
-        }
+            await transaction.CommitAsync();
 
-
-
-        // DELETE: api/Matricula/5
-        [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteMatricula(int id)
-        {
-            var matricula = await _context.FatoMatriculas.FindAsync(id);
-            if (matricula == null)
+            return Ok(new
             {
-                return NotFound();
-            }
-
-            _context.FatoMatriculas.Remove(matricula);
-            await _context.SaveChangesAsync();
-
-            return NoContent();
+                Message = "Matrícula cadastrada com sucesso.",
+                Matricula = fatoMatricula,
+                Curso = curso.nome,
+                Turma = turma.nome
+            });
         }
-
-        private bool MatriculaExists(int id)
+        catch (Exception ex)
         {
-            return _context.FatoMatriculas.Any(e => e.codigo_matricula == id);
+            await transaction.RollbackAsync();
+            return BadRequest(new { Message = "Erro ao cadastrar matrícula.", Error = ex.Message });
         }
     }
 }
