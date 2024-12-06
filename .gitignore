@@ -5,5 +5,4 @@ push.sh
 src/flask
 poetry.lock
 pyproject.toml
-bin/
 src/back/EscolaMusica/EscolaMusica/bin/
