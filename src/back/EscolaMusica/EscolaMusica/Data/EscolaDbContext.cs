@@ -12,6 +12,7 @@ public class EscolaDbContext : DbContext
     public DbSet<FatoMatricula> Matriculas { get; set; }
     public DbSet<FatoEstoque> Estoques { get; set; }
     public DbSet<DimCurso> Cursos { get; set; }
+    public DbSet<DimInstrumento> Instrumentos { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -22,5 +23,6 @@ public class EscolaDbContext : DbContext
         modelBuilder.Entity<FatoMatricula>().ToTable("fato_matricula");
         modelBuilder.Entity<FatoEstoque>().ToTable("fato_estoque");
         modelBuilder.Entity<DimCurso>().ToTable("dim_curso");
+        modelBuilder.Entity<DimInstrumento>().ToTable("dim_instrumento");
     }
 }
