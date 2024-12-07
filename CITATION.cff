@@ -1,29 +1,30 @@
 cff-version: 1.0.1
 message: Please cite this software using these metadata.
-title: 
+title: Sistema gerencial para uma escola de musica
 authors:
-  - family-names: 
-    given-names: 
-  - family-names: 
-    given-names: 
-  - family-names: 
-    given-names: 
-  - family-names: 
-    given-names: 
-  - family-names: 
-    given-names: 
+  - family-names: Rocha de Souza
+    given-names: Ana Laura
+  - family-names: Gonçalves da Cruz
+    given-names: Aristides Henrique
+  - family-names: Armond
+    given-names: Arthur Souza
+  - family-names: Ferreira Figueiredo
+    given-names: Gabriel Luis
+  - family-names: Santos Silva
+    given-names: Gustavo Anselmo
+  - family-names: Reis
+    given-names: Natalia da Silva
 
   - name-suffix: Professor
     affiliation: PUC Minas
-    family-names: 
-    given-names: 
-  - name-suffix: Professor
-    affiliation: PUC Minas
-    family-names: 
-    given-names: 
+    family-names: Soares de Andrade
+    given-names: Michelle Hanne
     keywords:
-    - 
-repository-code: 
+    - Música
+    - Escola
+    - Sistema
+    - Gerencial
+repository-code: https://github.com/ICEI-PUCMinas-PSG-SI-TI/psg-si-2024-02-p3-tiapn-6618100-clave-de-sol
 license: CC-BY-4.0
 version: 1.0.0
-date-released:
+date-released: 2024-12-13
