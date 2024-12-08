@@ -40,7 +40,7 @@ public class MatriculaController : ControllerBase
                 codigo_turma = turma.codigo_turma,
                 codigo_pagamento = matriculaDto.Pagamento.codigo_pagamento,
                 codigo_administrador = matriculaDto.CodigoAdministrador,
-                data_inicio = matriculaDto.DataInicio,
+                data_inicio = matriculaDto.DataInicio.ToUniversalTime(),
                 status = matriculaDto.Status
             };
 

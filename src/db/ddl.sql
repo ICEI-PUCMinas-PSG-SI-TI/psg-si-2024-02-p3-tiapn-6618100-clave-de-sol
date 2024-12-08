@@ -84,9 +84,9 @@ create table dim_pagamento
         primary key,
     tipo             varchar(50) not null,
     nome_cartao      varchar(100),
-    numero_cartao    varchar(20),
-    validade         varchar(7),
-    codigo_seguranca varchar(5),
+    numero_cartao    varchar(50),
+    validade         varchar(50),
+    codigo_seguranca varchar(50),
     status           varchar(50)
 );
 
