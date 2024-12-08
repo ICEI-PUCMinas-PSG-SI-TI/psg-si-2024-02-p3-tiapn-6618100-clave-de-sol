@@ -9,6 +9,5 @@ public class FatoEstoque
     public int codigo_estoque { get; set; }
     public int codigo_administrador { get; set; } 
     public int codigo_instrumento { get; set; } 
-    public string tipo_movimentacao { get; set; } = string.Empty;
     public int quantidade { get; set; } 
 }

@@ -17,9 +17,9 @@ const Matriculas = (  ) => {
     const fetchData = async () => {
         try {
 
-            const {data: cursosData} = await openApi(`/Turma`);
-            const {data: instrumentosData} = await openApi.get("/Instrumento");
-            const {data: admData} = await openApi.get("/Administrador");
+            const {data: cursosData} = await openApi(`/turma`);
+            const {data: instrumentosData} = await openApi.get("/instrumento");
+            const {data: admData} = await openApi.get("/administrador");
 
             setListCursos(cursosData); // Atualiza o state
             setListInstrumentos(instrumentosData);
@@ -39,7 +39,7 @@ const Matriculas = (  ) => {
         }
 
         try{
-            await openApi.post("/Matricula", matriculaModel);
+            await openApi.post("/matricula", matriculaModel);
             toast.success("Cadastro criado com sucesso!");
         }catch (err){
             console.log(err.response.data.title)

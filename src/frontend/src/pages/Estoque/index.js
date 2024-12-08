@@ -8,26 +8,35 @@ const Estoque = () => {
     const categoriaInstrumento = useRef(null);
     const condicaoInstrumento = useRef(null);
 
-    async function handleSaveStock( event ){
+    async function handleSaveStock(event) {
         event.preventDefault();
-        const formData = new FormData();
-        const data = Object.fromEntries(formData);
+
+        const form = event.target;
+        const quantidade = form.quantidade.value;
+        const instrumentoId = form.instrumento.value;
 
         const estoqueModel = {
-            // Alterar dados api
-        }
+            codigo_administrador: 3,
+            codigo_instrumento: instrumentoId,
+            quantidade: quantidade,
+        };
 
-        try{
-            await openApi.post("/Estoque", estoqueModel);
-            toast.success("Estoque creado com sucesso!");
-        }catch(err){
-            toast.error(err.response.data.title)
+        try {
+            await openApi.post("/estoque", estoqueModel);
+            toast.success("Estoque criado com sucesso!");
+        } catch (err) {
+            if (err.response && err.response.data && err.response.data.title) {
+                toast.error(err.response.data.title);
+            } else {
+                toast.error("Erro ao criar estoque.");
+            }
         }
     }
 
+
     const fetchData = async () => {
         try{
-            const {data: listInstrumentos} = await openApi.get("/Instrumento");
+            const {data: listInstrumentos} = await openApi.get("/instrumento");
             setListInstrumentos(listInstrumentos);
         }catch(err){
             toast.error(err.response.data.title);

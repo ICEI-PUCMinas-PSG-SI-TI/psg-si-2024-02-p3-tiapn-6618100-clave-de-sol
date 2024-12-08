@@ -12,8 +12,8 @@ const CadastrarTurmas = (  ) => {
     const fetchData = async (  ) => {
         try{
 
-            const resCursos = await fetch(`${urlBackend}/Turma`);
-            const resInstrumentos = await fetch(`${urlBackend}/Instrumento`);
+            const resCursos = await fetch(`${urlBackend}/turma`);
+            const resInstrumentos = await fetch(`${urlBackend}/instrumento`);
 
             setListInstrumentos( await resInstrumentos.json() );
             setListCursos( await resCursos.json() );
@@ -38,7 +38,7 @@ const CadastrarTurmas = (  ) => {
 
         try{
             // Substituir por API privada
-            await openApi.post("/Turma", classModel);
+            await openApi.post("/turma", classModel);
             toast.success("Turma adicionada com sucesso")
         }catch(err){
             toast.error(err.response.data.title);
