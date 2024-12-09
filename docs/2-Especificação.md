@@ -2,15 +2,32 @@
 
 <span style="color:red">Pré-requisitos: <a href="01-Documentação de Contexto.md"> Documentação de Contexto</a></span>
 
-Definição do problema e ideia de solução a partir da perspectiva do usuário. É composta pela definição do  diagrama de personas, histórias de usuários, requisitos funcionais e não funcionais além das restrições do projeto.
+Este documento apresenta a especificação do projeto de solução tecnológica para a escola de música Clave de Sol. Ele aborda a definição de personas, histórias de usuários, requisitos funcionais e não funcionais, além das restrições que limitam o escopo do projeto. 
 
-Apresente uma visão geral do que será abordado nesta parte do documento, enumerando as técnicas e/ou ferramentas utilizadas para realizar a especificações do projeto
+As ferramentas e técnicas utilizadas incluem análise de stakeholders, histórias de usuários e modelagem de requisitos para garantir uma solução centrada nos usuários.
 
 ## Personas
 
-Pedro Paulo tem 26 anos, é arquiteto recém-formado e autônomo. Pensa em se desenvolver profissionalmente através de um mestrado fora do país, pois adora viajar, é solteiro e sempre quis fazer um intercâmbio. Está buscando uma agência que o ajude a encontrar universidades na Europa que aceitem alunos estrangeiros.
+1 - Administrador - Ana Souza
 
-Enumere e detalhe as personas da sua solução. Para tanto, baseie-se tanto nos documentos disponibilizados na disciplina e/ou nos seguintes links:
+Idade: 40 anos
+Descrição: Responsável pela gestão administrativa da escola. Lida diariamente com a organização de pagamentos, matrícula de alunos e controle de inventário de instrumentos.
+Desafios: Falta de automação, dificuldade em rastrear instrumentos e resolver conflitos de horários.
+Motivação: Deseja um sistema integrado que facilite o gerenciamento das operações administrativas.
+
+2 - Professor - Carlos Mendes
+
+Idade: 35 anos
+Descrição: Professor de violão. Organiza suas aulas manualmente e enfrenta dificuldades com reservas de salas e materiais.
+Desafios: Horários sobrepostos, dificuldade de comunicação com a administração e falta de controle de instrumentos disponíveis.
+Motivação: Precisa de um sistema que otimize o agendamento de aulas e simplifique o controle de materiais.
+
+3 - Aluno - Júlia Pereira
+
+Idade: 16 anos
+Descrição: Estudante de teclado. Acompanha suas aulas e pagamentos por anotações manuais.
+Desafios: Dificuldade em acompanhar a disponibilidade de aulas e instrumentos.
+Motivação: Busca um sistema intuitivo para acompanhar horários e pagamentos com maior facilidade.
 
 > **Links Úteis**:
 > - [Rock Content](https://rockcontent.com/blog/personas/)
@@ -20,18 +37,18 @@ Enumere e detalhe as personas da sua solução. Para tanto, baseie-se tanto nos 
 > - [Mapa de Empatia](https://resultadosdigitais.com.br/blog/mapa-da-empatia/)
 > - [Mapa de Stalkeholders](https://www.racecomunicacao.com.br/blog/como-fazer-o-mapeamento-de-stakeholders/)
 >
-Lembre-se que você deve ser enumerar e descrever precisamente e personalizada todos os clientes ideais que sua solução almeja.
 
 ## Histórias de Usuários
 
 Com base na análise das personas forma identificadas as seguintes histórias de usuários:
 
-|EU COMO... `PERSONA`| QUERO/PRECISO ... `FUNCIONALIDADE` |PARA ... `MOTIVO/VALOR`                 |
-|--------------------|------------------------------------|----------------------------------------|
-|Usuário do sistema  | Registrar minhas tarefas           | Não esquecer de fazê-las               |
-|Administrador       | Alterar permissões                 | Permitir que possam administrar contas |
-
-Apresente aqui as histórias de usuário que são relevantes para o projeto de sua solução. As Histórias de Usuário consistem em uma ferramenta poderosa para a compreensão e elicitação dos requisitos funcionais e não funcionais da sua aplicação. Se possível, agrupe as histórias de usuário por contexto, para facilitar consultas recorrentes à essa parte do documento.
+|EU COMO... `PERSONA`| QUERO/PRECISO ... `FUNCIONALIDADE`   |PARA ... `MOTIVO/VALOR`                       |
+|--------------------|--------------------------------------|----------------------------------------------|
+|Administrador       | Cadastrar alunos e professores       | Gerenciar informações com mais organização   |
+|Administrador       | Controlar inventário de instrumentos | Monitorar disponibilidade e estado dos itens |
+|Professor           | Agendar aulas diretamente no sistema | Evitar conflitos de horários                 |
+|Aluno               | Consultar horários de aulas          | Planejar melhor meus estudos                 |
+|Aluno               | Acompanhar pagamentos pelo sistema   | Garantir que meus débitos estão em dia       |
 
 > **Links Úteis**:
 > - [Histórias de usuários com exemplos e template](https://www.atlassian.com/br/agile/project-management/user-stories)
@@ -50,15 +67,20 @@ As tabelas que se seguem apresentam os requisitos funcionais e não funcionais q
 
 |ID    | Descrição do Requisito  | Prioridade |
 |------|-----------------------------------------|----|
-|RF-001| Permitir que o usuário cadastre tarefas | ALTA | 
-|RF-002| Emitir um relatório de tarefas no mês   | MÉDIA |
+|RF-001| Permitir o cadastro de alunos e professores | ALTA | 
+|RF-002| Automatizar o agendamento de aulas   | ALTA |
+|RF-003| Registrar e controlar empréstimos de instrumentos   | MÉDIA |
+|RF-004| Permitir o acompanhamento de pagamentos pelos alunos   | ALTA |
+|RF-005| Gerar relatórios de inventário e frequência   | MÉDIA |
 
 ### Requisitos não Funcionais
 
 |ID     | Descrição do Requisito  |Prioridade |
 |-------|-------------------------|----|
 |RNF-001| O sistema deve ser responsivo para rodar em um dispositivos móvel | MÉDIA | 
-|RNF-002| Deve processar requisições do usuário em no máximo 3s |  BAIXA | 
+|RNF-002| Deve processar requisições em até 2 segundos | MÉDIA | 
+|RNF-003| Garantir segurança dos dados com autenticação via login |  ALTA | 
+|RNF-004| Interface deve ser responsiva e amigável |  MÉDIA | 
 
 Com base nas Histórias de Usuário, enumere os requisitos da sua solução. Classifique esses requisitos em dois grupos:
 
