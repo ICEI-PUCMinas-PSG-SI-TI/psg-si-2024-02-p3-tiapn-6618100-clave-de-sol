@@ -42,7 +42,7 @@ Avaliar o impacto da solução implementada na eficiência operacional e na sati
 
 ## Justificativa
 
-O desenvolvimento deste trabalho é justificado pela necessidade urgente de modernizar os processos administrativos em escolas de música e instrumentos, que ainda dependem fortemente de métodos manuais e desintegrados. Essa modernização não apenas reduzirá o retrabalho e aumentará a precisão na gestão de informações, mas também proporcionará uma melhor experiência para todos os stakeholders envolvidos, desde administradores até alunos.
+O desenvolvimento deste projeto é justificado pela necessidade urgente de modernizar os processos administrativos em escolas de música e instrumentos, que ainda dependem fortemente de métodos manuais e desintegrados. Essa modernização não apenas reduzirá o retrabalho e aumentará a precisão na gestão de informações, mas também proporcionará uma melhor experiência para todos os stakeholders envolvidos, desde administradores até alunos.
 
 A implementação de um sistema integrado trará benefícios tangíveis, como maior eficiência na alocação de recursos, melhor controle financeiro, e maior transparência na comunicação entre a administração, professores e alunos. Além disso, a solução proposta poderá servir de modelo para outras instituições educacionais que enfrentam desafios semelhantes, demonstrando o valor da tecnologia na otimização de processos educacionais.
 
