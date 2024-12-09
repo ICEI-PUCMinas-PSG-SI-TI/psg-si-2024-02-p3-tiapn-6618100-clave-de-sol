@@ -1,13 +1,21 @@
 # Introdução
 
-Texto descritivo com a visão geral do projeto abordado. Inclui o contexto, o problema, os objetivos, a justificativa e o público-alvo do projeto.
+No cenário atual, muitas escolas enfrentam desafios na gestão de seus processos administrativos, que são frequentemente realizados de forma manual e fragmentada. Essa falta de automação e integração resulta em ineficiências, retrabalho e uma experiência subótima tanto para os administradores quanto para os alunos e professores.
+
+O avanço da tecnologia oferece oportunidades significativas para a modernização desses processos, promovendo uma gestão mais eficiente e eficaz. Este trabalho se insere no contexto da digitalização de instituições educacionais, com foco específico em uma escola de música e instrumentos. A proposta é desenvolver uma solução tecnológica que não só automatize os processos administrativos, mas também integre todas as operações em um sistema coeso, facilitando a tomada de decisões e melhorando a qualidade do serviço oferecido.
+
+O projeto foi motivado pela necessidade de superar os gargalos existentes na gestão manual desses processos, que incluem desde a dificuldade em organizar horários de aulas até o controle inadequado de instrumentos e materiais. A adoção de uma solução tecnológica integrada é vista como essencial para elevar o nível de eficiência e eficácia na gestão da escola, contribuindo para um ambiente educacional mais organizado e produtivo.
 
 ## Problema
-Nesse momento você deve apresentar o problema que a sua aplicação deve  resolver. No entanto, não é a hora de comentar sobre a aplicação.
 
-Descreva também o contexto em que essa aplicação será usada, se  houver: empresa, tecnologias, etc. Novamente, descreva apenas o que de  fato existir, pois ainda não é a hora de apresentar requisitos  detalhados ou projetos.
+Atualmente, a gestão administrativa em escolas de música como a Clave de Sol é ineficiente devido à dependência de processos manuais e desconexos. Entre os principais problemas enfrentados estão:
 
-Nesse momento, o grupo pode optar por fazer uso  de ferramentas como Design Thinking, que permite um olhar de ponta a ponta para o problema.
+Matrícula manual: Os dados dos alunos e professores são registrados em fichas físicas, propensas a erros e perda de informações.
+
+Agendamento informal de aulas: Horários são definidos verbalmente, via aplicativos como WhatsApp ou e-mail, gerando conflitos de horários e inconsistências.
+
+Controle inadequado de instrumentos: Não há um sistema eficiente para rastrear a disponibilidade, manutenção e empréstimo de instrumentos, o que impacta negativamente a experiência dos alunos e professores.
+A falta de automação e integração não apenas aumenta o retrabalho e a chance de erros, mas também compromete a experiência de professores e alunos, além de dificultar a tomada de decisões pelos administradores.
 
 > **Links Úteis**:
 > - [Objetivos, Problema de pesquisa e Justificativa](https://medium.com/@versioparole/objetivos-problema-de-pesquisa-e-justificativa-c98c8233b9c3)
@@ -16,28 +24,57 @@ Nesse momento, o grupo pode optar por fazer uso  de ferramentas como Design Thin
 
 ## Objetivos
 
-Aqui você deve descrever os objetivos do trabalho indicando que o objetivo geral é desenvolver um software para solucionar o problema apresentado acima. 
+O objetivo geral deste trabalho é desenvolver e implementar um sistema integrado de gestão que automatize e otimize os processos administrativos de uma escola de música e instrumentos.
 
-Apresente também alguns (pelo menos 2) objetivos específicos dependendo de onde você vai querer concentrar a sua prática investigativa, ou como você vai aprofundar no seu trabalho.
+Objetivos específicos:
+
+Modelar os processos atuais da escola, identificando ineficiências e gargalos. 
+
+Propor e desenvolver uma solução tecnológica que integre as operações de cadastro de alunos e professores, agendamento de aulas e controle de instrumentos.
+
+Desenvolver um sistema de pagamentos simples e mensal.
+
+Avaliar o impacto da solução implementada na eficiência operacional e na satisfação dos usuários (alunos, professores e administradores).
+
  
 > **Links Úteis**:
 > - [Objetivo geral e objetivo específico: como fazer e quais verbos utilizar](https://blog.mettzer.com/diferenca-entre-objetivo-geral-e-objetivo-especifico/)
 
 ## Justificativa
 
-Descreva a importância ou a motivação para trabalhar com esta aplicação que você escolheu. Indique as razões pelas quais você escolheu seus objetivos específicos ou as razões para aprofundar em certos aspectos do software.
+O desenvolvimento deste trabalho é justificado pela necessidade urgente de modernizar os processos administrativos em escolas de música e instrumentos, que ainda dependem fortemente de métodos manuais e desintegrados. Essa modernização não apenas reduzirá o retrabalho e aumentará a precisão na gestão de informações, mas também proporcionará uma melhor experiência para todos os stakeholders envolvidos, desde administradores até alunos.
 
-O grupo de trabalho pode fazer uso de questionários, entrevistas e dados estatísticos, que podem ser apresentados, com o objetivo de esclarecer detalhes do problema que será abordado pelo grupo.
+A implementação de um sistema integrado trará benefícios tangíveis, como maior eficiência na alocação de recursos, melhor controle financeiro, e maior transparência na comunicação entre a administração, professores e alunos. Além disso, a solução proposta poderá servir de modelo para outras instituições educacionais que enfrentam desafios semelhantes, demonstrando o valor da tecnologia na otimização de processos educacionais.
+
 
 > **Links Úteis**:
 > - [Como montar a justificativa](https://guiadamonografia.com.br/como-montar-justificativa-do-tcc/)
 
 ## Público-Alvo
 
-Descreva quem serão as pessoas que usarão a sua aplicação indicando os diferentes perfis. O objetivo aqui não é definir quem serão os clientes ou quais serão os papéis dos usuários na aplicação. A ideia é, dentro do possível, conhecer um pouco mais sobre o perfil dos usuários: conhecimentos prévios, relação com a tecnologia, relações
-hierárquicas, etc.
+O público-alvo da aplicação inclui os seguintes perfis:
 
-Adicione informações sobre o público-alvo por meio de uma descrição textual, diagramas de personas e mapa de stakeholders.
+Administradores:
+
+Conhecimentos básicos em informática e gestão.
+Principais preocupações: gestão financeira, supervisão de inventário e alocação de recursos.
+Relacionamento hierárquico: interagem diretamente com professores e alunos para gerenciar processos.
+
+Professores:
+
+Familiaridade intermediária com tecnologia, focados na utilização do sistema para gerenciar horários e materiais.
+Principais necessidades: acesso fácil ao agendamento e controle de materiais didáticos.
+
+Alunos e responsáveis:
+
+Diversos níveis de conhecimento tecnológico, com expectativa de interface amigável.
+Principais demandas: visualização de horários, pagamentos e acesso a instrumentos.
+
+Mapa de Stakeholders:
+
+Administradores (Decisores e usuários finais).
+Professores (Usuários intermediários).
+Alunos e responsáveis (Usuários finais).
 
 > **Links Úteis**:
 > - [Público-alvo](https://blog.hotmart.com/pt-br/publico-alvo/)
