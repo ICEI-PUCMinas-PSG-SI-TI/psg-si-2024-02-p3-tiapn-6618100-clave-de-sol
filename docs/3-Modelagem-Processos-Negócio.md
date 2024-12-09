@@ -50,7 +50,7 @@ Criação e Agendamento de Aulas:
 
 Um algoritmo compara os perfis dos alunos com os perfis dos professores armazenados no banco de dados, e o sistema irá sugerir o professor mais adequado para aquela turma, levando em conta o horário disponível e o instrumento desejado. Após a definição dos professores com suas respectivas turmas, os mesmos deverão utilizar uma interface do próprio software para agendar as aulas, onde ele informará o horário e para qual instrumento será a aula ministrada. A partir do informado, o sistema analisará as salas disponíveis para aquele horário e reservará os instrumentos, se disponíveis, para aquela aula em específico. Assim, o sistema garante que não existirão aulas sobrepostas e designaria as salas de cada turma, evitando que duas turmas tenham aula na mesma sala ao mesmo tempo, e o mesmo se aplica aos instrumentos daquela aula. Um relatório com o horário e sala de cada aula poderá ser impresso ou enviado para todos os alunos e professores.
 
-![BPMN Cadastro de instrumentos](./images/bpmnprocessocriacaodeturma.png)
+![BPMN Cadastro de instrumentos](./images/bpmnprocessodecriacaodeturma.png)
 
 Controle dos Instrumentos:
 
