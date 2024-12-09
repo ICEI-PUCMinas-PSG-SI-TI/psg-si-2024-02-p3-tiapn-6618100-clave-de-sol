@@ -1,12 +1,10 @@
-# TÍTULO DO PROJETO
+# Clave de Sol
 
-`CURSO`
+`Sistemas de Informação`
 
-`DISCIPLINA`
+`Trabalho Interdisciplinar: Aplicações para Processos de Negócios`
 
-`SEMESTRE`
-
-Descrever resumidamente, em um ou dois parágrafos, o projeto que está sendo desenvolvido.
+Este projeto propõe o desenvolvimento de uma solução tecnológica para otimizar os processos administrativos e operacionais em uma escola de música e instrumentos. O objetivo principal é criar um sistema que automatize o cadastro de alunos e professores, agendamento de aulas e o controle de instrumentos e materiais.
 
 ## Integrantes
 
