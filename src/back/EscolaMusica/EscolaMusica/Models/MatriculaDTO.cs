@@ -9,4 +9,3 @@ public class MatriculaDTO
     public DateTime DataInicio { get; set; }
     public string Status { get; set; }
 }
-

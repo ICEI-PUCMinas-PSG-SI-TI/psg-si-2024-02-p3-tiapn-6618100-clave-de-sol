@@ -21,7 +21,7 @@ public class EscolaDbContext : DbContext
         modelBuilder.Entity<DimTurma>().ToTable("dim_turma");
         modelBuilder.Entity<DimPagamento>().ToTable("dim_pagamento");
         modelBuilder.Entity<DimAdministrador>().ToTable("dim_administrador");
-        modelBuilder.Entity<DimAdministrador>().ToTable("dim_professor");
+        modelBuilder.Entity<DimProfessor>().ToTable("dim_professor");
         modelBuilder.Entity<FatoMatricula>().ToTable("fato_matricula");
         modelBuilder.Entity<FatoEstoque>().ToTable("fato_estoque");
         modelBuilder.Entity<DimCurso>().ToTable("dim_curso");

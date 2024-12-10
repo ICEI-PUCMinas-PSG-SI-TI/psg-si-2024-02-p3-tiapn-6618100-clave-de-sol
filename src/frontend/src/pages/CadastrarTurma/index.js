@@ -3,13 +3,13 @@ import toast from "react-hot-toast";
 import { openApi } from "../../services/api";
 
 const CadastrarTurmas = () => {
-    const [listInstrumentos, setListInstrumentos] = useState(null);
+    const [listInstrumentos, setListInstrumentos] = useState([]);
     const [listCursos, setListCursos] = useState([]);
     const [listProfessores, setListProfessores] = useState([]);
     const [filteredCursos, setFilteredCursos] = useState([]);
     const [filteredProfessores, setFilteredProfessores] = useState([]);
-    const [selectedProfessor, setSelectedProfessor] = useState(null);
-    const [selectedCurso, setSelectedCurso] = useState(null);
+    const [selectedProfessor, setSelectedProfessor] = useState("");
+    const [selectedCurso, setSelectedCurso] = useState("");
 
     const urlBackend = "http://localhost:8080/api";
 
@@ -35,35 +35,24 @@ const CadastrarTurmas = () => {
         }
     };
 
-    // Função para filtrar os cursos com base no professor selecionado
-    const handleProfessorChange = (e) => {
-        const professorId = e.target.value;
-        setSelectedProfessor(professorId);
+    const updateFilters = (profId, cursoId) => {
+        let cursosFiltrados = listCursos;
+        let professoresFiltrados = listProfessores;
 
-        if (professorId) {
+        if (profId) {
             const professor = listProfessores.find(
-                (prof) => prof.codigo_professor === parseInt(professorId)
+                (prof) => prof.codigo_professor === parseInt(profId)
             );
 
             if (professor) {
-                // Filtrar cursos com base nas habilidades do professor
-                const habilidades = professor.habilidades.split(", ");
-                const cursosFiltrados = listCursos.filter((curso) =>
+                const habilidades = professor.habilidades.split(", ").map((h) => h.trim());
+                cursosFiltrados = listCursos.filter((curso) =>
                     habilidades.some((habilidade) =>
-                        curso.descricao.includes(habilidade)
+                        curso.descricao.toLowerCase().includes(habilidade.toLowerCase())
                     )
                 );
-                setFilteredCursos(cursosFiltrados);
             }
-        } else {
-            setFilteredCursos(listCursos);
         }
-    };
-
-    // Função para filtrar os professores com base no curso selecionado
-    const handleCursoChange = (e) => {
-        const cursoId = e.target.value;
-        setSelectedCurso(cursoId);
 
         if (cursoId) {
             const curso = listCursos.find(
@@ -71,35 +60,44 @@ const CadastrarTurmas = () => {
             );
 
             if (curso) {
-                // Filtrar professores com base na descrição do curso
-                const professoresFiltrados = listProfessores.filter(
-                    (professor) =>
-                        professor.habilidades
-                            .split(", ")
-                            .some((habilidade) =>
-                                curso.descricao.includes(habilidade)
-                            )
+                const descricao = curso.descricao.toLowerCase();
+                professoresFiltrados = listProfessores.filter((professor) =>
+                    professor.habilidades
+                        .split(", ")
+                        .some((habilidade) => descricao.includes(habilidade.toLowerCase()))
                 );
-                setFilteredProfessores(professoresFiltrados);
             }
-        } else {
-            setFilteredProfessores(listProfessores);
         }
+
+        setFilteredCursos(cursosFiltrados);
+        setFilteredProfessores(professoresFiltrados);
     };
 
-    async function handleCreateClass(event) {
+    const handleProfessorChange = (e) => {
+        const professorId = e.target.value;
+        setSelectedProfessor(professorId);
+        updateFilters(professorId, selectedCurso);
+    };
+
+    const handleCursoChange = (e) => {
+        const cursoId = e.target.value;
+        setSelectedCurso(cursoId);
+        updateFilters(selectedProfessor, cursoId);
+    };
+
+    const handleCreateClass = async (event) => {
         event.preventDefault();
         const formData = new FormData(event.target);
         const data = Object.fromEntries(formData);
 
         const classModel = {
-            codigo_curso: data.curso,
+            codigo_curso: parseInt(data.curso),
             nome: data.nome,
-            sala: parseInt(data.sala),
+            sala: parseInt(data.sala) || 100, // Converte ou define como 0
             nivel: data.nivel,
-            duracao: data.duracao,
-            numero_vagas: parseInt(data.numero_vagas),
-            codigo_professor: data.professor,
+            duracao: `${data.duracao}:00`, // Formata como HH:MM:SS
+            numero_vagas: parseInt(data.numero_vagas) || 0, // Converte ou define como 0
+            codigo_professor: parseInt(data.professor),
         };
 
         try {
@@ -109,7 +107,8 @@ const CadastrarTurmas = () => {
             console.error("Erro ao cadastrar turma", err);
             toast.error("Erro ao cadastrar turma");
         }
-    }
+    };
+
 
     useEffect(() => {
         fetchData();
@@ -129,7 +128,7 @@ const CadastrarTurmas = () => {
                                 <input
                                     className="w-[100%] form-input"
                                     type="text"
-                                    name={'nome'}
+                                    name="nome"
                                     placeholder="Nome da turma"
                                 />
                             </p>
@@ -137,13 +136,15 @@ const CadastrarTurmas = () => {
                         <div className={`mb-5`}>
                             <p className="px-3">
                                 <label>Instrumentos</label>
-                                <select name={`instrumento`} className="form-select">
-                                    {listInstrumentos &&
-                                        listInstrumentos.map((instrumento) => (
-                                            <option key={instrumento.codigo_instrumento} value={instrumento.codigo_instrumento}>
-                                                {instrumento.nome}
-                                            </option>
-                                        ))}
+                                <select name="instrumento" className="form-select">
+                                    {listInstrumentos.map((instrumento) => (
+                                        <option
+                                            key={instrumento.codigo_instrumento}
+                                            value={instrumento.codigo_instrumento}
+                                        >
+                                            {instrumento.nome}
+                                        </option>
+                                    ))}
                                 </select>
                             </p>
                         </div>
@@ -154,23 +155,23 @@ const CadastrarTurmas = () => {
                                     name="professor"
                                     className="form-select"
                                     onChange={handleProfessorChange}
+                                    value={selectedProfessor}
                                 >
                                     <option value="">Selecione um professor</option>
-                                    {filteredProfessores &&
-                                        filteredProfessores.map((professor) => (
-                                            <option
-                                                key={professor.codigo_professor}
-                                                value={professor.codigo_professor}
-                                            >
-                                                {professor.nome}
-                                            </option>
-                                        ))}
+                                    {filteredProfessores.map((professor) => (
+                                        <option
+                                            key={professor.codigo_professor}
+                                            value={professor.codigo_professor}
+                                        >
+                                            {professor.nome}
+                                        </option>
+                                    ))}
                                 </select>
                             </p>
                         </div>
                         <div className={`mb-5`}>
                             <label>Nível da Turma</label>
-                            <select className="form-select" name={'nivel'}>
+                            <select className="form-select" name="nivel">
                                 <option value="Básico">Básico</option>
                                 <option value="Intermediário">Intermediário</option>
                                 <option value="Avançado">Avançado</option>
@@ -183,7 +184,8 @@ const CadastrarTurmas = () => {
                             <input
                                 className="w-[100%] form-input"
                                 type="time"
-                                name={'duracao'}
+                                name="duracao"
+                                required
                                 placeholder="00:00"
                             />
                         </p>
@@ -192,38 +194,55 @@ const CadastrarTurmas = () => {
                             <input
                                 className="w-[100%] form-input"
                                 type="number"
-                                name={'numero_vagas'}
+                                name="numero_vagas"
                                 placeholder="0"
                             />
                         </p>
+                        <p className="px-3">
+                            <label>Sala</label>
+                            <input
+                                className="w-[100%] form-input"
+                                type="number"
+                                name="sala"
+                                placeholder="Número da sala"
+                                required // Torna obrigatório
+                            />
+                        </p>
+
                         <p className="px-3">
                             <label>Curso</label>
                             <select
                                 name="curso"
                                 className="form-select"
                                 onChange={handleCursoChange}
+                                value={selectedCurso}
                             >
                                 <option value="">Selecione um curso</option>
-                                {filteredCursos &&
-                                    filteredCursos.map((curso) => (
-                                        <option
-                                            key={curso.codigo_curso}
-                                            value={curso.codigo_curso}
-                                        >
-                                            {curso.nome}
-                                        </option>
-                                    ))}
+                                {filteredCursos.map((curso) => (
+                                    <option
+                                        key={curso.codigo_curso}
+                                        value={curso.codigo_curso}
+                                    >
+                                        {curso.nome}
+                                    </option>
+                                ))}
                             </select>
                         </p>
                     </div>
                 </div>
                 <div className="mt-20 mb-20 flex justify-end items-center gap-5">
                     <a href="/">
-                        <button type={"button"} className="p-3 px-4 rounded-md btn-secondary flex">
+                        <button
+                            type="button"
+                            className="p-3 px-4 rounded-md btn-secondary flex"
+                        >
                             Cancelar
                         </button>
                     </a>
-                    <button type="submit" className="p-3 px-4 rounded-md btn-primary flex items-center justify-center gap-2">
+                    <button
+                        type="submit"
+                        className="p-3 px-4 rounded-md btn-primary flex items-center justify-center gap-2"
+                    >
                         Salvar
                         <svg
                             fill="white"
