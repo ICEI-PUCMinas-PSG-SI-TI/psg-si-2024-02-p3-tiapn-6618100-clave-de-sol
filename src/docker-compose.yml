@@ -12,10 +12,10 @@ services:
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
 
-  frontend:
-    image: escolamusica-frontend
-    build:
-      context: ./frontend
-      dockerfile: Dockerfile
-    ports:
-      - "3000:80"
+#  frontend:
+#    image: escolamusica-frontend
+#    build:
+#      context: ./frontend
+#      dockerfile: Dockerfile
+#    ports:
+#      - "3000:80"

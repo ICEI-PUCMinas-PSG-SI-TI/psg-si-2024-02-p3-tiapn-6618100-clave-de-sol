@@ -9,6 +9,7 @@ public class DimTurma
     [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
     public int codigo_turma { get; set; }
     public int codigo_curso { get; set; }
+    public int codigo_professor { get; set; }
     public string nome { get; set; }
     public int sala { get; set; }
     public string nivel { get; set; }

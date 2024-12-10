@@ -1,3 +1,3 @@
 ﻿<Project>
-  <Import Project="..\build\EscolaMusica.props" />
+  <Import Project="../build/EscolaMusica.props" />
 </Project>
