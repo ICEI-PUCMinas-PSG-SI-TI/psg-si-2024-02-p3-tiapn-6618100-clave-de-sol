@@ -93,10 +93,10 @@ const CadastrarTurmas = () => {
         const classModel = {
             codigo_curso: parseInt(data.curso),
             nome: data.nome,
-            sala: parseInt(data.sala) || 100, // Converte ou define como 0
+            sala: parseInt(data.sala) || 100,
             nivel: data.nivel,
-            duracao: `${data.duracao}:00`, // Formata como HH:MM:SS
-            numero_vagas: parseInt(data.numero_vagas) || 0, // Converte ou define como 0
+            duracao: `${data.duracao}:00`,
+            numero_vagas: parseInt(data.numero_vagas) || 0,
             codigo_professor: parseInt(data.professor),
         };
 

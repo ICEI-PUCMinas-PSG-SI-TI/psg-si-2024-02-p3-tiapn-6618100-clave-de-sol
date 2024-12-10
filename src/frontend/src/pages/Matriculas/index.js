@@ -32,11 +32,16 @@ const Matriculas = () => {
         const formData = new FormData(event.target);
         const data = Object.fromEntries(formData);
 
+        const generateMatriculaHash = () => {
+            const uniquePart = Math.random().toString(36).substring(2, 10); // Parte única alfanumérica
+            return `MAT${uniquePart.toUpperCase()}`;
+        };
+
         const matriculaModel = {
             aluno: {
-                codigo_aluno: 0, // Gerado pelo backend
+                codigo_aluno: 0,
                 nome: data.nome,
-                matricula: "string", // Pode ser gerado ou validado pelo backend
+                matricula: generateMatriculaHash(),
                 rua: data.rua,
                 bairro: data.bairro,
                 numero: data.numero,
@@ -44,19 +49,19 @@ const Matriculas = () => {
                 telefone: data.telefone,
                 email: data.email,
             },
-            codigoTurma: parseInt(data.curso), // Converte para número para evitar problemas
+            codigoTurma: parseInt(data.curso),
             pagamento: {
-                codigo_pagamento: 0, // Gerado pelo backend
+                codigo_pagamento: 0,
                 tipo: data.metodo_pagamento,
                 nome_cartao: data.nome_cartao || "",
                 numero_cartao: data.numero_cartao || "",
                 validade: data.data_expiracao || "",
                 codigo_seguranca: data.cod_seguranca || "",
-                status: "pendente", // Status inicial
+                status: "pendente",
             },
-            codigoAdministrador: admCode, // ID do administrador recuperado
-            dataInicio: new Date().toISOString().split("T")[0], // Data atual no formato yyyy-mm-dd
-            status: "ativa", // Status inicial
+            codigoAdministrador: admCode,
+            dataInicio: new Date().toISOString().split("T")[0],
+            status: "ativa",
         };
 
         try {
@@ -67,7 +72,6 @@ const Matriculas = () => {
             toast.error(err.response?.data?.title || "Erro ao criar matrícula");
         }
     }
-
 
     useEffect(() => {
         fetchData();
