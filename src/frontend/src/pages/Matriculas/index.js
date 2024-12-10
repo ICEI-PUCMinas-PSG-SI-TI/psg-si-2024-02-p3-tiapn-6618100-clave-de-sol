@@ -1,51 +1,73 @@
-import "./assets/index.css"
-import React, {useEffect, useState} from "react";
-import {openApi} from "../../services/api";
+import "./assets/index.css";
+import React, { useEffect, useState } from "react";
+import { openApi } from "../../services/api";
 import toast from "react-hot-toast";
 
-const Matriculas = (  ) => {
-
+const Matriculas = () => {
     const [methodPayment, setMethodPayment] = useState(null);
-    const [listCursos, setListCursos] = useState(null);
-    const [listInstrumentos, setListInstrumentos] = useState(null);
+    const [listCursos, setListCursos] = useState([]);
+    const [listInstrumentos, setListInstrumentos] = useState([]);
     const [admCode, setAdmCode] = useState(null);
 
-    const handleChangeMethodPayment = ( method ) => {
-        setMethodPayment( method )
-    }
+    const handleChangeMethodPayment = (method) => {
+        setMethodPayment(method);
+    };
 
     const fetchData = async () => {
         try {
+            const { data: cursosData } = await openApi.get("/turma");
+            const { data: instrumentosData } = await openApi.get("/instrumento");
+            const { data: admData } = await openApi.get("/administrador");
 
-            const {data: cursosData} = await openApi(`/turma`);
-            const {data: instrumentosData} = await openApi.get("/instrumento");
-            const {data: admData} = await openApi.get("/administrador");
-
-            setListCursos(cursosData); // Atualiza o state
+            setListCursos(cursosData);
             setListInstrumentos(instrumentosData);
             setAdmCode(admData[0].codigo_administrador);
         } catch (e) {
-            console.error("Erro ao buscar dados:", e); // É bom logar o erro
+            console.error("Erro ao buscar dados:", e);
         }
     };
 
-    async function handleEnroll( event ){
+    async function handleEnroll(event) {
         event.preventDefault();
         const formData = new FormData(event.target);
         const data = Object.fromEntries(formData);
 
         const matriculaModel = {
+            aluno: {
+                codigo_aluno: 0, // Gerado pelo backend
+                nome: data.nome,
+                matricula: "string", // Pode ser gerado ou validado pelo backend
+                rua: data.rua,
+                bairro: data.bairro,
+                numero: data.numero,
+                cep: data.cep,
+                telefone: data.telefone,
+                email: data.email,
+            },
+            codigoTurma: parseInt(data.curso), // Converte para número para evitar problemas
+            pagamento: {
+                codigo_pagamento: 0, // Gerado pelo backend
+                tipo: data.metodo_pagamento,
+                nome_cartao: data.nome_cartao || "",
+                numero_cartao: data.numero_cartao || "",
+                validade: data.data_expiracao || "",
+                codigo_seguranca: data.cod_seguranca || "",
+                status: "pendente", // Status inicial
+            },
+            codigoAdministrador: admCode, // ID do administrador recuperado
+            dataInicio: new Date().toISOString().split("T")[0], // Data atual no formato yyyy-mm-dd
+            status: "ativa", // Status inicial
+        };
 
-        }
-
-        try{
-            await openApi.post("/matricula", matriculaModel);
-            toast.success("Cadastro criado com sucesso!");
-        }catch (err){
-            console.log(err.response.data.title)
-            toast.error(err.response.data.title);
+        try {
+            await openApi.post("/matricula/cadastrar", matriculaModel);
+            toast.success("Matrícula criada com sucesso!");
+        } catch (err) {
+            console.error("Erro ao cadastrar matrícula:", err.response?.data || err.message);
+            toast.error(err.response?.data?.title || "Erro ao criar matrícula");
         }
     }
+
 
     useEffect(() => {
         fetchData();
@@ -145,9 +167,11 @@ const Matriculas = (  ) => {
                                     <label>
                                         Cursos
                                     </label>
-                                    <select className="form-select" name={`cusrso`}>
-                                        { listCursos && listCursos.map(( curso, key ) => (
-                                            <option key={key} value={curso.codigo_turma}>{ curso.nome }</option>
+                                    <select className="form-select" name={`curso`}>
+                                        {listCursos.map((curso, key) => (
+                                            <option key={key} value={curso.codigo_turma}>
+                                                {curso.nome}
+                                            </option>
                                         ))}
                                     </select>
                                 </p>
@@ -306,6 +330,6 @@ const Matriculas = (  ) => {
             </div>
         </div>
     );
-}
+};
 
 export default Matriculas;
