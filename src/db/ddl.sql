@@ -65,14 +65,15 @@ alter table dim_curso
 
 create table dim_turma
 (
-    codigo_turma serial
+    codigo_turma     serial
         primary key,
-    codigo_curso integer,
-    nome         varchar(100) not null,
-    sala         integer      not null,
-    nivel        varchar(50),
-    duracao      time         not null,
-    numero_vagas integer
+    codigo_curso     integer,
+    nome             varchar(100) not null,
+    sala             integer      not null,
+    nivel            varchar(50),
+    duracao          time         not null,
+    numero_vagas     integer,
+    codigo_professor integer
 );
 
 alter table dim_turma
@@ -84,7 +85,7 @@ create table dim_pagamento
         primary key,
     tipo             varchar(50) not null,
     nome_cartao      varchar(100),
-    numero_cartao    varchar(50),
+    numero_cartao    varchar(20),
     validade         varchar(50),
     codigo_seguranca varchar(50),
     status           varchar(50)
@@ -116,12 +117,11 @@ create table fato_estoque
 (
     codigo_estoque       serial
         primary key,
-    codigo_administrador integer     not null
+    codigo_administrador integer not null
         references dim_administrador,
-    codigo_instrumento   integer     not null
+    codigo_instrumento   integer not null
         references dim_instrumento,
-    tipo_movimentacao    varchar(50) not null,
-    quantidade           integer     not null
+    quantidade           integer not null
 );
 
 alter table fato_estoque

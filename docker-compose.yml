@@ -4,7 +4,7 @@ services:
   backend:
     image: escolamusica-backend
     build:
-      context: ./back/EscolaMusica
+      context: ./src/back/EscolaMusica
       dockerfile: EscolaMusica/Dockerfile
     ports:
       - "8080:8080"
@@ -12,10 +12,10 @@ services:
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
 
-#  frontend:
-#    image: escolamusica-frontend
-#    build:
-#      context: ./frontend
-#      dockerfile: Dockerfile
-#    ports:
-#      - "3000:80"
+  frontend:
+    image: escolamusica-frontend
+    build:
+      context: ./src/frontend
+      dockerfile: Dockerfile
+    ports:
+      - "3000:80"

@@ -1,69 +1,57 @@
--- Populando dim_curso
-INSERT INTO dim_curso (nome, descricao)
-VALUES
-    ('Violão', 'Curso básico de violão para iniciantes'),
-    ('Bateria', 'Curso avançado de bateria com ênfase em ritmos brasileiros'),
-    ('Piano', 'Curso de piano clássico e técnicas avançadas'),
-    ('Flauta', 'Curso intermediário de flauta transversal'),
-    ('Guitarra', 'Curso de guitarra elétrica e harmonia aplicada');
-
--- Populando dim_turma
-INSERT INTO dim_turma (nome, sala, nivel, duracao, numero_vagas, codigo_curso)
-VALUES
-    ('Turma Violão 1', 101, 'Iniciante', '01:30:00', 20, 1),
-    ('Turma Bateria Avançada', 102, 'Avançado', '02:00:00', 10, 2),
-    ('Turma Piano Clássico', 103, 'Intermediário', '01:45:00', 15, 3),
-    ('Turma Flauta Transversal', 104, 'Intermediário', '02:00:00', 12, 4),
-    ('Turma Guitarra Harmonia', 105, 'Avançado', '01:30:00', 8, 5);
+-- Populando dim_instrumento
+INSERT INTO dim_instrumento (nome, tipo, categoria, condicao)
+VALUES ('Violão', 'Corda', 'Acústico', 'Novo'),
+       ('Piano', 'Tecla', 'Clássico', 'Usado'),
+       ('Flauta', 'Sopro', 'Madeira', 'Novo'),
+       ('Bateria', 'Percussão', 'Eletrônico', 'Novo'),
+       ('Guitarra', 'Corda', 'Elétrico', 'Usado');
 
 -- Populando dim_aluno
 INSERT INTO dim_aluno (nome, matricula, rua, bairro, numero, cep, telefone, email)
-VALUES
-    ('João Silva', 'MAT001', 'Rua Principal', 'Centro', '100', '12345-678', '(11) 91234-5678', 'joao@gmail.com'),
-    ('Maria Souza', 'MAT002', 'Rua Secundária', 'Jardim', '200', '98765-432', '(11) 99876-5432', 'maria@gmail.com'),
-    ('Carlos Santos', 'MAT003', 'Avenida Paulista', 'Centro', '300', '34567-890', '(11) 93456-7890', 'carlos@gmail.com'),
-    ('Ana Clara', 'MAT004', 'Rua das Flores', 'Bela Vista', '400', '65432-109', '(11) 94567-8901', 'ana@gmail.com'),
-    ('Pedro Henrique', 'MAT005', 'Rua das Palmeiras', 'Jardins', '500', '32109-876', '(11) 95678-9012', 'pedro@gmail.com');
+VALUES ('João Silva', 'MAT001', 'Rua A', 'Bairro X', '123', '12345-678', '1234567890', 'joao@gmail.com'),
+       ('Maria Oliveira', 'MAT002', 'Rua B', 'Bairro Y', '456', '23456-789', '2345678901', 'maria@gmail.com'),
+       ('Carlos Lima', 'MAT003', 'Rua C', 'Bairro Z', '789', '34567-890', '3456789012', 'carlos@gmail.com');
 
 -- Populando dim_administrador
 INSERT INTO dim_administrador (nome, contato, tipo)
-VALUES
-    ('Marcos Oliveira', 'marcos.admin@gmail.com', 'Financeiro'),
-    ('Fernanda Almeida', 'fernanda.admin@gmail.com', 'Acadêmico'),
-    ('Roberto Lima', 'roberto.admin@gmail.com', 'Logística');
+VALUES ('Ana Souza', 'ana@gmail.com', 'Recursos'),
+       ('Paulo Santos', 'paulo@gmail.com', 'Financeiro'),
+       ('Bruno Martins', 'bruno@gmail.com', 'Geral');
+
+-- Populando dim_professor
+INSERT INTO dim_professor (nome, contato, habilidades)
+VALUES ('Lucas Mendes', 'lucas@gmail.com', 'Violão, Guitarra'),
+       ('Fernanda Costa', 'fernanda@gmail.com', 'Piano, Flauta'),
+       ('Roberto Almeida', 'roberto@gmail.com', 'Bateria, Percussão');
+
+-- Populando dim_curso
+INSERT INTO dim_curso (nome, descricao)
+VALUES ('Curso de Violão', 'Aprenda a tocar violão do básico ao avançado.'),
+       ('Curso de Piano', 'Curso para iniciantes e intermediários em piano.'),
+       ('Curso de Bateria', 'Desenvolvimento de técnicas de bateria para todos os níveis.');
+
+-- Populando dim_turma
+INSERT INTO dim_turma (codigo_curso, nome, sala, nivel, duracao, numero_vagas, codigo_professor)
+VALUES (1, 'Turma Violão Básico', 101, 'Básico', '01:30:00', 20, 1),
+       (2, 'Turma Piano Intermediário', 102, 'Intermediário', '02:00:00', 15, 2),
+       (3, 'Turma Bateria Avançado', 103, 'Avançado', '01:45:00', 10, 3);
 
 -- Populando dim_pagamento
 INSERT INTO dim_pagamento (tipo, nome_cartao, numero_cartao, validade, codigo_seguranca, status)
-VALUES
-    ('Cartão de Crédito', 'João Silva', '1234567890123456', '12/25', '123', 'Pago'),
-    ('Cartão de Débito', 'Maria Souza', '2345678901234567', '01/26', '234', 'Pendente'),
-    ('Boleto', NULL, NULL, NULL, NULL, 'Pago'),
-    ('Pix', NULL, NULL, NULL, NULL, 'Pendente'),
-    ('Cartão de Crédito', 'Pedro Henrique', '3456789012345678', '03/24', '456', 'Pago');
+VALUES ('Cartão de Crédito', 'João Silva', '1111222233334444', '12/25', '123', 'Aprovado'),
+       ('Pix', NULL, NULL, NULL, NULL, 'Pendente'),
+       ('Boleto', NULL, NULL, NULL, NULL, 'Pago');
 
 -- Populando fato_matricula
 INSERT INTO fato_matricula (codigo_aluno, codigo_turma, codigo_pagamento, codigo_administrador, data_inicio, status)
-VALUES
-    (1, 1, 1, 1, '2024-01-15', 'Ativo'),
-    (2, 2, 2, 2, '2024-02-20', 'Ativo'),
-    (3, 3, 3, 1, '2024-03-10', 'Concluído'),
-    (4, 4, 4, 2, '2024-04-05', 'Ativo'),
-    (5, 5, 5, 3, '2024-05-01', 'Pendente');
+VALUES (1, 1, 1, 1, '2024-01-01', 'Ativa'),
+       (2, 2, 2, 1, '2024-01-15', 'Pendente'),
+       (3, 3, 3, 2, '2024-02-01', 'Concluída');
 
 -- Populando fato_estoque
-INSERT INTO fato_estoque (codigo_administrador, codigo_instrumento, tipo_movimentacao, quantidade)
-VALUES
-    (1, 1, 'Entrada', 10),
-    (2, 2, 'Entrada', 5),
-    (3, 3, 'Saída', 2),
-    (1, 4, 'Entrada', 7),
-    (2, 5, 'Saída', 1);
-
--- Populando dim_instrumento
-INSERT INTO dim_instrumento (nome, tipo, categoria, condicao)
-VALUES
-    ('Violino', 'Cordas', 'Clássico', 'Novo'),
-    ('Piano', 'Teclas', 'Clássico', 'Usado'),
-    ('Guitarra Elétrica', 'Cordas', 'Popular', 'Novo'),
-    ('Flauta', 'Sopro', 'Clássico', 'Novo'),
-    ('Bateria', 'Percussão', 'Popular', 'Usado');
+INSERT INTO fato_estoque (codigo_administrador, codigo_instrumento, quantidade)
+VALUES (1, 1, 10),
+       (1, 2, 5),
+       (2, 3, 15),
+       (2, 4, 7),
+       (1, 5, 3);
