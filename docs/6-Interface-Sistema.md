@@ -7,30 +7,20 @@ _Visão geral da interação do usuário por meio das telas do sistema. Apresent
 
 ## 6.1. Tela principal do sistema
 
-_Descrição da tela principal do sistema._
-
-[`Tela principal do sistema`](images/)
+[`Tela principal do sistema`](images/Screenshot_6.png))
 
 
 ## 6.2. Telas do processo 1
 
-_Descrição da tela relativa à atividade 1._
+[`Tela da atividade 1`](images/Screenshot_2.png)
 
-[`Tela da atividade 1`](images/)
-
-_Descrição da tela relativa à atividade 2._
-
-[`Tela da atividade 2`](images/)
+[`Tela da atividade 2`](images/Screenshot_1.png)
 
 
 ## 6.3. Telas do processo 2
 
-_Descrição da tela relativa à atividade 1._
+[`Tela da atividade 1`](images/Screenshot_4.png)
 
-[`Tela da atividade 1`](images/)
-
-_Descrição da tela relativa à atividade 2._
-
-[`Tela da atividade 2`](images/)
+[`Tela da atividade 2`](images/Screenshot_5.png)
 
 
