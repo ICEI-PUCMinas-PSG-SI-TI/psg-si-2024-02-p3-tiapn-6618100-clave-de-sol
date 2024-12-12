@@ -7,42 +7,61 @@
 > Apresente a divisão de papéis entre os membros do grupo em cada sprint. O desejável é que, em cada sprint, o aluno assuma papéis diferentes na disciplina. Siga o modelo do exemplo abaixo:
 
 ### Sprint 1
-- _Scrum master_: AlunaX
+- _Scrum master_: Grupo em Geral
 - Protótipos: AlunoY
 - Testes: AlunoK
 - Documentação: AlunaZ
 
 ### Sprint 2
-- _Scrum master_: AlunaY
-- Desenvolvedor _front-end_: AlunoX
-- Desenvolvedor _back-end_: AlunoK
-- Testes: AlunaZ
+- _Scrum master_: Grupo em Geral
+- Desenvolvedor _front-end_: Arthur e Nathalia.
+- Desenvolvedor _back-end_: Aristides e Gustavo
+- Testes: Gabriel e Ana
+
+- ### Sprint 3
+- _Scrum master_: Grupo em Geral
+- Desenvolvedor _front-end_: Arthur e Nathalia.
+- Desenvolvedor _back-end_: Aristides e Gustavo
+- Testes: Gabriel e Ana
+
+- ### Sprint 4
+- _Scrum master_: Grupo em Geral
+- Desenvolvedor _front-end_: Arthur e Nathalia.
+- Desenvolvedor _back-end_: Aristides e Gustavo
+- Testes: Gabriel e Ana
+- 
+- ### Sprint 5
+- _Scrum master_: Grupo em Geral
+- Desenvolvedor _front-end_: Arthur e Nathalia.
+- Desenvolvedor _back-end_: Aristides e Gustavo
+- Testes: Gabriel e Ana
 
 ## 5.1. Quadro de tarefas
 
 > Apresente a divisão de tarefas entre os membros do grupo e o acompanhamento da execução, conforme exemplo abaixo.
 
-## Sprint 1
+Começamos a desenvolver o projeto a partir da sprint 4.
 
-Atualizado em: 21/04/2024
+## Sprint 4
 
-| Responsável   | Tarefa/Requisito | Iniciado em    | Prazo      | Status | Terminado em    |
-| :----         |    :----         |      :----:    | :----:     | :----: | :----:          |
-| AlunaX        | Introdução | 01/02/2024     | 07/02/2024 | ✔️    | 05/01/2005      |
-| AlunaZ        | Objetivos    | 03/02/2024     | 10/02/2024 | 📝    |                 |
-| AlunoY        | Histórias de usuário  | 01/01/2024     | 07/01/2005 | ⌛     |                 |
-| AlunoK        | Personas 1  |    01/01/2024        | 12/02/2005 | ❌    |       |
+Atualizado em: 22/11/2024
 
-## Sprint 2
+| Responsável         | Tarefa/Requisito    | Iniciado em    | Prazo      | Status | Terminado em   |
+| :----               |    :----            |      :----:    | :----:     | :----: | :----:         |
+| Ana, Gabriel        | Protótipo de Páginas| ----------     | ---------- | ✔️    | 22/11/2024      |
+| Arthur e Nathalia   | Front-end           | ----------     | ---------- | ✔️    |  22/11/2024     |
+| Aristides e Gustavo | Back-end            | ----------     | ---------- | ✔️     |  22/11/2024    |
 
-Atualizado em: 21/04/2024
 
-| Responsável   | Tarefa/Requisito | Iniciado em    | Prazo      | Status | Terminado em    |
-| :----         |    :----         |      :----:    | :----:     | :----: | :----:          |
-| AlunaX        | Home-Page        | 01/02/2024     | 07/03/2024 | ✔️    | 05/01/2005      |
-| AlunaZ        | CSS Unificado    | 03/02/2024     | 10/03/2024 | 📝    |                 |
-| AlunoY        | Página de login  | 01/02/2024     | 07/03/2024 | ⌛     |                 |
-| AlunoK        | Script de login  |  01/01/2024    | 12/03/2024 | ❌    |       |
+## Sprint 5
+
+Atualizado em: 11/12/2024
+
+| Responsável         | Tarefa/Requisito    | Iniciado em    | Prazo      | Status | Terminado em   |
+| :----               |    :----            |      :----:    | :----:     | :----: | :----:         |
+| Ana, Gabriel        | Protótipo de Páginas| ----------     | ---------- | ✔️    | 11/12/2024      |
+| Arthur e Nathalia   | Front-end           | ----------     | ---------- | ✔️    |  11/12/2024     |
+| Aristides e Gustavo | Back-end            | ----------     | ---------- | ✔️     |  11/12-/2024    |
 
 
 Legenda:
