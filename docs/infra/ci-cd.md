@@ -133,5 +133,3 @@ terraform apply
 - Para validar os recursos criados:
     - Acesse o console AWS.
     - Verifique os serviços relevantes, como DynamoDB, IAM ou qualquer outro recurso especificado.
-
----
