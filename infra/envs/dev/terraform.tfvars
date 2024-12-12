@@ -1,2 +1,5 @@
 S3Name             = ""
 TagProject = "clave-de-sol"
+database = "back"
+userpg = "puc_aws"
+pwpg = "1234"

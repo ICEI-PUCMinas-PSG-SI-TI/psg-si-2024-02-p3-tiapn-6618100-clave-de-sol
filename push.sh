@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/bash 
 
 # Script shell para facilitar a criação de commits semânticos e gerenciar Pull Requests
 # Lista de tipos de commit e seus respectivos emojis

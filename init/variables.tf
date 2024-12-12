@@ -11,19 +11,16 @@ variable "TagEnv" {
 variable "aws_region" {
   description = "Regiao AWS"
   type = string
-  default = "us-east-1"
 }
 
 variable "github_acc" {
-  description = "User/Organizations GitHub"
+  description = "User/Organizations/repo GitHub"
   type        = string
-  default = "ICEI-PUCMinas-PSG-SI-TI/psg-si-2024-02-p3-tiapn-6618100-clave-de-sol"
 }
 
 variable "updated_by" {
   description = "Criador do repositório"
   type        = string
-  default = "AriHenrique"
 }
 
 locals {
