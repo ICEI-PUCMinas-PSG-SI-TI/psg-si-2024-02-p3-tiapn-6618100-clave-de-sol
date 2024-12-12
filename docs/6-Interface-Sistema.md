@@ -7,7 +7,7 @@ _Visão geral da interação do usuário por meio das telas do sistema. Apresent
 
 ## 6.1. Tela principal do sistema
 
-[`Tela principal do sistema`](images/Screenshot_6.png))
+[`Tela principal do sistema`](images/Screenshot_6.png)
 
 
 ## 6.2. Telas do processo 1
