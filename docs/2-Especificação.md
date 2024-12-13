@@ -1,6 +1,6 @@
 # Especificações do Projeto
 
-<span style="color:red">Pré-requisitos: <a href="01-Documentação de Contexto.md"> Documentação de Contexto</a></span>
+<span style="color:red">Pré-requisitos: [Documentação de Contexto](1-Contexto.md)
 
 Este documento apresenta a especificação do projeto de solução tecnológica para a escola de música Clave de Sol. Ele aborda a definição de personas, histórias de usuários, requisitos funcionais e não funcionais, além das restrições que limitam o escopo do projeto. 
 

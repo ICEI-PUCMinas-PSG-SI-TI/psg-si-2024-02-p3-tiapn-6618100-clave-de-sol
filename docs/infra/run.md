@@ -6,7 +6,7 @@ A infraestrutura criada inclui uma tabela no DynamoDB que armazena as informa√ß√
 
 1. Acesse o [console do DynamoDB na AWS](https://us-east-1.console.aws.amazon.com/dynamodbv2/home?region=us-east-1#item-explorer).
 2. Localize a tabela criada com o nome do projeto especificado no arquivo `main.tf` no `module "dynamo_postgres"` na variavel `table_name`.
-   <img src="../images/dynamodb.png"/>
+   ![DynamoDB](../images/dynamodb.png)
 3. Visualize o item correspondente e anote os valores das seguintes chaves:
     - `Host`
     - `Database`

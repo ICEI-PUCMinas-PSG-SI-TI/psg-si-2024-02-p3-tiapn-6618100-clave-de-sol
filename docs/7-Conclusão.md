@@ -1,6 +1,6 @@
 ## 7. Conclusão
 
-<span style="color:red">Pré-requisitos: <a href="6-Interface-Sistema.md"> Projeto da Solução</a></span>
+<span style="color:red">Pré-requisitos: [Projeto da Solução](6-Interface-Sistema.md)
 
 O projeto busca enfrentar os desafios de gestão encontrados em escolas de música, propondo uma solução tecnológica que automatize e integre processos administrativos e operacionais. A implementação do sistema proposto pretende não apenas aumentar a eficiência e reduzir retrabalhos, mas também melhorar a experiência de todos os envolvidos, desde administradores e professores até alunos.
 
