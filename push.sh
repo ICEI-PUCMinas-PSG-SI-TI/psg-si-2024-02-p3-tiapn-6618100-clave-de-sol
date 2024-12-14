@@ -1,7 +1,4 @@
 #!/bin/bash 
-
-# Script shell para facilitar a criação de commits semânticos e gerenciar Pull Requests
-# Lista de tipos de commit e seus respectivos emojis
 commit_types=(
     "feat:✨ - Nova funcionalidade relacionada a pipelines, ETL ou integração de dados."
     "fix:🐛 - Correção de bugs em pipelines, scripts ou lógica de dados."
